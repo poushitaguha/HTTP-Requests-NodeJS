@@ -1,10 +1,12 @@
 var https = require('https');
 
-function getAndPrintHTMLChunks () {
+function getAndPrintHTML () {
+
+let bufferedString = "";
 
   var requestOptions = {
     host: 'sytantris.github.io',
-    path: '/http-examples/step1.html'
+    path: '/http-examples/step2.html'
   };
 
   /* Add your code here */
@@ -16,7 +18,8 @@ https.get(requestOptions, function (response) {
   // the callback is invoked when a `data` chunk is received
   response.on('data', function (data) {
     console.log('Chunk Received. Length:', data.length);
-    console.log('Data', data, '\n');
+    data += bufferedString;
+    console.log(data);
   });
 
   response.on('end', function() {
@@ -27,4 +30,4 @@ https.get(requestOptions, function (response) {
 
 }
 
-console.log(getAndPrintHTMLChunks());
+console.log(getAndPrintHTML());
